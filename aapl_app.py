@@ -8,9 +8,8 @@ st.text('This app predicts the next 30 days Apple stock price by SARIMA model')
 Value = st.slider('Select a Value:', min_value=1, max_value=30,value=1)
 
 
-dateparse = lambda dates: pd.datetime.strptime(dates, '%d-%m-%Y')
 df = pd.read_csv("https://github.com/MVK109/TimeSeries-forecasting-of-Apple-stocks/AAPL.csv",
-                 index_col='Date', parse_dates=['Date'], date_parser=dateparse)
+                 index_col='Date')
 
 def predict(Value):
     model_sarima = SARIMAX(df["Close"], order=(2,1,2), seasonal_order=(2,1,2,12))
